@@ -9,6 +9,7 @@ from sklearn import tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import svm
 from sklearn.metrics import accuracy_score
+from fastapi.middleware.cors import CORSMiddleware
 
 draws = pd.read_csv("dataset.csv")
 
@@ -46,6 +47,15 @@ y_predict_svm = clf3.predict(X_test)
 print("Acuracia SVM: ", accuracy_score(y_test, y_predict_svm))
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permitir todas as origens. Alterar isso para uma lista específica é mais seguro.
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos os métodos HTTP (GET, POST, PUT, DELETE, etc.).
+    allow_headers=["*"],  # Permitir todos os headers.
+)
 
 class Game(BaseModel):
     positions: list[str]
