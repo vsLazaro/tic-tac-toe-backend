@@ -18,3 +18,9 @@ fastapi dev main.py
 ## Acessando a api
 
 localhost:8000
+
+
+```
+docker build -t tic-tac-toe-image .
+docker run -d -p 8000:8000 tic-tac-toe
+```
